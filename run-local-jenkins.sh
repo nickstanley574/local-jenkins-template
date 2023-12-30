@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+source .env
+
 CONTAINER_NAME=local-jenkins
 
 cleanup_and_exit() {
@@ -13,24 +15,21 @@ cleanup_and_exit() {
 # Trap interrupt signal (Ctrl+C) and call cleanup_and_exit function
 trap 'cleanup_and_exit' INT
 
-export LOCAL_JENKINS_DOCKER_SOCKET="/run/user/1000/docker.sock"
-export LOCAL_JENKINS_DOCKER_BIN="/home/nick/bin/docker"
+LOCAL_JENKINS_DOCKER_SOCKET=$(echo $DOCKER_HOST | sed 's|unix://||')
+LOCAL_JENKINS_DOCKER_BIN=$(which docker)
 
-# Set the paths and variables
-PORT_MAPPING="8080:8080"
+echo -e "\n\nLOCAL_JENKINS_DOCKER_SOCKET=$LOCAL_JENKINS_DOCKER_SOCKET"
+echo -e "LOCAL_JENKINS_DOCKER_BIN=$LOCAL_JENKINS_DOCKER_BIN\n\n"
 
-# docker-compose up --build 
 docker build -t ${CONTAINER_NAME} .
 
-# docker container rm local-jenkins
-
-# Run the Docker container
 docker run -d \
   --name ${CONTAINER_NAME} \
-  -p ${PORT_MAPPING} \
-  -v $(pwd)/../.:/mnt/cicd-django-demo:ro \
+  -p "$LOCAL_JENKINS_PORT:8080" \
+  -v $(pwd)/../.:/mnt/local-project:ro \
   -v ${LOCAL_JENKINS_DOCKER_SOCKET}:/var/run/docker.sock \
   -v ${LOCAL_JENKINS_DOCKER_BIN}:/usr/bin/docker \
+  --env-file .env \
   ${CONTAINER_NAME}
 
 docker logs -f ${CONTAINER_NAME}

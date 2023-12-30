@@ -41,16 +41,16 @@ done
 
 cd /tmp
 curl -Os http://localhost:8080/jnlpJars/jenkins-cli.jar 
-java -jar jenkins-cli.jar -s http://localhost:8080/ -auth admin:password123 reload-jcasc-configuration
+java -jar jenkins-cli.jar -s http://localhost:8080/ -auth admin:admin reload-jcasc-configuration
 
 echo "[entrypoint.sh] http://localhost:8080/"
 
 # Use inotifywait to monitor the Jenkinsfile and reload the jcasc file on a change.
-jenkinsfile=/mnt/cicd-django-demo/Jenkinsfile
+jenkinsfile=/mnt/local-project/Jenkinsfile
 while true; do
     inotifywait -e modify "$jenkinsfile"
     echo "[entrypoint.sh] $jenkinsfile updated."
-    java -jar jenkins-cli.jar -s http://localhost:8080/ -auth admin:password123 reload-jcasc-configuration
+    java -jar jenkins-cli.jar -s http://localhost:8080/ -auth admin:admin reload-jcasc-configuration
 done
 
 # Wait for Jenkins to finish

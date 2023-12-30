@@ -15,8 +15,8 @@ jenkins:
 
 jobs:
   - script: >
-      pipelineJob('cicd-demo-local') {
-        theScript = new File('/mnt/cicd-django-demo/Jenkinsfile').getText("UTF-8")
+      pipelineJob('${JOB_NAME}') {
+        theScript = new File('/mnt/local-project/${JOB_JENKINSFILE_PATH}').getText("UTF-8")
         definition {
           cps {
             script(theScript)
@@ -24,4 +24,3 @@ jobs:
           }
         }
       }
-  # - file: /mnt/cicd-django-demo/jenkins-local/seedJob.groovy
