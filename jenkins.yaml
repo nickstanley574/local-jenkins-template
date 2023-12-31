@@ -15,8 +15,8 @@ jenkins:
 
 jobs:
   - script: >
-      pipelineJob('${JOB_NAME}') {
-        theScript = new File('/mnt/local-project/${JOB_JENKINSFILE_PATH}').getText("UTF-8")
+      pipelineJob('${LOCAL_JENKINS_JOB_NAME}') {
+        theScript = new File('/mnt/local-project/Jenkinsfile').getText("UTF-8")
         definition {
           cps {
             script(theScript)
