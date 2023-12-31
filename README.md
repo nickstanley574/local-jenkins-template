@@ -1,6 +1,6 @@
 # Local Jenkins
 
-When working on a personal project, I am often in need of a CI/CD process. While GitHub Workflows is a option, I prefer to keep some projects private and avoid the costs of running Workflows in private repos. This project is my solution for that need, a local Jenkins designed to run my projects out of the box. This approach allows for the execution of my project CI/CD in an isolated environment, maintaining package version consistency, and closely replicating the production runtime environment. Essentially, I am taking advantage of the purpose and promise of containers.
+When working on a personal project, I am often in need of a CI/CD process. While GitHub Workflows is an option, I prefer to keep some projects private and avoid the costs of running Workflows in private repos. This project is my solution for that need, a local Jenkins designed to run my projects out of the box. This approach allows for the execution of my project CI/CD in an isolated environment, maintaining package version consistency, and closely replicating the production runtime environment. Essentially, I am taking advantage of the purpose and promise of containers.
 
 ## Quick Start
 
