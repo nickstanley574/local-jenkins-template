@@ -1,6 +1,6 @@
 # Local Jenkins
 
-When working on a personal project, I am often in need of a CI/CD process. While GitHub Workflows is a option, I prefer to keep some projects private and avoid the costs of running Workflows in private repos. This project is my solution for that need, a local Jenkins designed to run my local projects out of the box.This approach allows for the execution of my project CI/CD in an isolated environment, maintaining package version consistency, and closely replicating the production runtime environment. Essentially, I am taking advantage of the purpose and promise of containers.
+When working on a personal project, I am often in need of a CI/CD process. While GitHub Workflows is a option, I prefer to keep some projects private and avoid the costs of running Workflows in private repos. This project is my solution for that need, a local Jenkins designed to run my projects out of the box. This approach allows for the execution of my project CI/CD in an isolated environment, maintaining package version consistency, and closely replicating the production runtime environment. Essentially, I am taking advantage of the purpose and promise of containers.
 
 ## Quick Start
 
@@ -47,10 +47,10 @@ Since this is running locally, I've adjusted security settings for simplicity of
 
 ### Limitations and Possible Future improvements
 
-The current design is somewhat limited since I only designed it for my specific purpose for my personal project. The main one I would like to improve in the near future is that fact only 1 job can be confirmed. Light might be cases where a project might have more then 1 job for different processes.  
+My current design has limitations as it was tailored for my personal project's specific needs. The main improvement I would like to make in the near future is currently, only one job can be configured for a project. There is a use case from a project to have more than one job for different workflows.
 
-A better install method. Right now I am cloning the project into my other project and making sure the local-jenkins folder is in the gitignore file. This isn't great and could lead to issues, but so fair its worked for my needs.
+A better installation method. Currently, I am cloning the project into my other project and ensuring that the "local-jenkins" folder is included in the gitignore file. While this approach has meet my needs so far, it is not ideal and could potentially lead to issues.
 
 ## Final Thoughts
 
-This project serves as a good example of how a seemingly simple end-state and solution are, in fact, a specific combination of specific features across many tools, achieved by research and experimentation, ultimately leading to the desired outcome. 
+This project serves as a good example of how many seemingly simple solutions are, in fact, a specific combination of specific features across many tools, achieved by research and experimentation, ultimately leading to the desired outcome. 
